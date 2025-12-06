@@ -14,8 +14,14 @@ from tqdm import tqdm
 import numpy as np
 from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
 
-from model import create_model
-from data_loader import create_data_loaders
+try:
+    # When run as script
+    from model import create_model
+    from data_loader import create_data_loaders
+except ImportError:
+    # When imported as module
+    from .model import create_model
+    from .data_loader import create_data_loaders
 
 
 class Trainer:
