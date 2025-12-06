@@ -6,7 +6,7 @@ Combines image and text features using pre-trained models to predict product rat
 
 import torch
 import torch.nn as nn
-from transformers import BertModel, BertTokenizer, ViTModel, ViTImageProcessor
+from transformers import BertModel, DistilBertModel, BertTokenizer, ViTModel, ViTImageProcessor
 from torchvision import models
 
 
@@ -54,7 +54,7 @@ class TextFeatureExtractor(nn.Module):
         super(TextFeatureExtractor, self).__init__()
         
         if model_name == 'distilbert':
-            self.backbone = BertModel.from_pretrained('distilbert-base-uncased')
+            self.backbone = DistilBertModel.from_pretrained('distilbert-base-uncased')
             self.feature_dim = 768
         elif model_name == 'bert':
             self.backbone = BertModel.from_pretrained('bert-base-uncased')
