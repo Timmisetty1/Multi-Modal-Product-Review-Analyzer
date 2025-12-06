@@ -1,0 +1,38 @@
+# Multi-Modal Product Review Analyzer Configuration
+
+# Model Configuration
+model:
+  image_model: 'vit'  # Options: 'vit', 'resnet'
+  text_model: 'distilbert'  # Options: 'distilbert', 'bert'
+  fusion_dim: 512
+  num_classes: 5
+  dropout: 0.3
+  freeze_backbones: true  # Freeze pre-trained models for efficiency
+
+# Training Configuration
+training:
+  batch_size: 32
+  num_epochs: 10
+  learning_rate: 0.0001
+  weight_decay: 0.00001
+  use_amp: true  # Mixed precision training
+  
+# Data Configuration
+data:
+  train_path: 'data/train.csv'
+  val_path: 'data/val.csv'
+  test_path: 'data/test.csv'
+  image_dir: 'data/images'
+  max_length: 128  # Maximum text sequence length
+  num_workers: 4
+
+# Paths
+paths:
+  save_dir: 'models'
+  log_dir: 'logs'
+  output_dir: 'outputs'
+
+# Performance Targets
+targets:
+  accuracy: 0.68  # Target accuracy on 5-class prediction
+  dataset_size: 20000  # Target dataset size
